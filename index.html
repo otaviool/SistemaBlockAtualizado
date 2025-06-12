@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle de Internet</title>
+  </head>
+  <body>
+    <h2>Login</h2>
+    <form id="loginForm">
+      Usuário: <input type="text" id="usuario" name="usuario" /><br />
+      Senha: <input type="password" id="senha" name="senha" /><br />
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div id="mensagem"></div>
+
+    <div id="controleInternet" style="display: none">
+      <h2>Bem-vindo!</h2>
+      <button onclick="bloquearInternet()">Bloquear Internet</button>
+      <button onclick="desbloquearInternet()">Desbloquear Internet</button>
+      <button onclick="logout()">Sair</button>
+    </div>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async function (event) {
+          event.preventDefault();
+
+          const usuario = document.getElementById("usuario").value;
+          const senha = document.getElementById("senha").value;
+
+          const response = await fetch("http://localhost:8080/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams({ usuario, senha }),
+          });
+
+          const text = await response.text();
+          document.getElementById("mensagem").innerHTML = text;
+
+          if (text.includes("Bem-vindo")) {
+            document.getElementById("loginForm").style.display = "none";
+            document.getElementById("controleInternet").style.display = "block";
+          }
+        });
+
+      async function bloquearInternet() {
+        const response = await fetch("http://localhost:8080/bloquear");
+        document.getElementById("mensagem").innerHTML = await response.text();
+      }
+
+      async function desbloquearInternet() {
+        const response = await fetch("http://localhost:8080/desbloquear");
+        document.getElementById("mensagem").innerHTML = await response.text();
+      }
+
+      async function logout() {
+        const response = await fetch("http://localhost:8080/logout");
+        document.getElementById("mensagem").innerHTML = await response.text();
+        document.getElementById("loginForm").style.display = "block";
+        document.getElementById("controleInternet").style.display = "none";
+      }
+    </script>
+  </body>
+</html>
