@@ -1,9 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { exec } = require('child_process');
+const path = require('path');
+
+
 
 const app = express();
+app.use(express.static(path.join(__dirname, 'Public')));
 const PORT = 8080;
+
 
 const USUARIO = 'admin';
 const SENHA = '1234';
@@ -13,16 +18,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
     if (!autenticado) {
-        res.send(`<h2>Login</h2>
-                  <form method='post' action='/login'>
-                  Usuário: <input type='text' name='usuario'><br>
-                  Senha: <input type='password' name='senha'><br>
-                  <button type='submit'>Entrar</button></form>`);
+       res.sendFile(path.join(__dirname, 'views', 'Login.html'));
     } else {
-        res.send(`<h2>Bem-vindo!</h2>
-                  <a href='/bloquear'>Bloquear Internet</a> | 
-                  <a href='/desbloquear'>Desbloquear Internet</a> | 
-                  <a href='/logout'>Sair</a>`);
+        res.sendFile(path.join(__dirname, 'views', 'Painel.html'));
     }
 });
 
@@ -32,8 +30,8 @@ app.post('/login', (req, res) => {
         autenticado = true;
         res.redirect('/');
     } else {
-        res.send(`<h2>Erro: Usuário ou senha incorretos!</h2><a href='/'>Tente novamente</a>`);
-    }
+        res.sendFile(path.join(__dirname, 'views', 'Erro.html'));
+     }
 });
 
 app.get('/logout', (req, res) => {
@@ -44,19 +42,20 @@ app.get('/logout', (req, res) => {
 app.get('/bloquear', (req, res) => {
     if (autenticado) {
         executarComando('netsh advfirewall set allprofiles state on');
-        res.send("<h2>Internet bloqueada!</h2><a href='/'>Voltar</a>");
+        res.sendFile(path.join(__dirname, 'views', 'Bloqueado.html'));
     } else {
-        res.send("<h2>Acesso negado!</h2><a href='/'>Fazer login</a>");
+        res.redirect('/');
+
     }
 });
 
 app.get('/desbloquear', (req, res) => {
     if (autenticado) {
         executarComando('netsh advfirewall set allprofiles state off');
-        res.send("<h2>Internet desbloqueada!</h2><a href='/'>Voltar</a>");
-    } else {
-        res.send("<h2>Acesso negado!</h2><a href='/'>Fazer login</a>");
-    }
+         res.sendFile(path.join(__dirname, 'views', 'Desbloqueado.html'));
+} else {
+           res.redirect('/');
+     }
 });
 
 function executarComando(comando) {
