@@ -2,65 +2,65 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Controle de Internet</title>
+    <title>Sistema de Controle</title>
   </head>
   <body>
-    <h2>Login</h2>
-    <form id="loginForm">
-      Usuário: <input type="text" id="usuario" name="usuario" /><br />
-      Senha: <input type="password" id="senha" name="senha" /><br />
-      <button type="submit">Entrar</button>
-    </form>
+    <!-- Seção de Login -->
+    <div id="loginSection">
+      <h2>Login</h2>
+      <form id="loginForm">
+        Usuário: <input type="text" name="usuario" id="usuario" /><br />
+        Senha: <input type="password" name="senha" id="senha" /><br />
+        <button type="submit">Entrar</button>
+      </form>
+      <div id="mensagem"></div>
+    </div>
 
-    <div id="mensagem"></div>
-
-    <div id="controleInternet" style="display: none">
+    <!-- Seção do Painel -->
+    <div id="painelSection" style="display: none">
       <h2>Bem-vindo!</h2>
-      <button onclick="bloquearInternet()">Bloquear Internet</button>
-      <button onclick="desbloquearInternet()">Desbloquear Internet</button>
-      <button onclick="logout()">Sair</button>
+      <a href="#" onclick="acessar('/bloquear')">Bloquear Internet</a><br />
+      <a href="#" onclick="acessar('/desbloquear')">Desbloquear Internet</a
+      ><br />
+
+      <a href="#" onclick="acessar('/logout')">Sair</a><br />
+      <div id="respostaPainel"></div>
     </div>
 
     <script>
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", async function (event) {
-          event.preventDefault();
+      const loginForm = document.getElementById("loginForm");
+      loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-          const usuario = document.getElementById("usuario").value;
-          const senha = document.getElementById("senha").value;
+        const usuario = document.getElementById("usuario").value;
+        const senha = document.getElementById("senha").value;
 
-          const response = await fetch("http://localhost:8080/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({ usuario, senha }),
-          });
-
-          const text = await response.text();
-          document.getElementById("mensagem").innerHTML = text;
-
-          if (text.includes("Bem-vindo")) {
-            document.getElementById("loginForm").style.display = "none";
-            document.getElementById("controleInternet").style.display = "block";
-          }
+        const res = await fetch("/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ usuario, senha }),
         });
 
-      async function bloquearInternet() {
-        const response = await fetch("http://localhost:8080/bloquear");
-        document.getElementById("mensagem").innerHTML = await response.text();
-      }
+        const texto = await res.text();
+        if (res.ok) {
+          document.getElementById("loginSection").style.display = "none";
+          document.getElementById("painelSection").style.display = "block";
+        } else {
+          document.getElementById("mensagem").innerHTML = texto;
+        }
+      });
 
-      async function desbloquearInternet() {
-        const response = await fetch("http://localhost:8080/desbloquear");
-        document.getElementById("mensagem").innerHTML = await response.text();
-      }
+      async function acessar(endpoint) {
+        const res = await fetch(endpoint);
+        const texto = await res.text();
 
-      async function logout() {
-        const response = await fetch("http://localhost:8080/logout");
-        document.getElementById("mensagem").innerHTML = await response.text();
-        document.getElementById("loginForm").style.display = "block";
-        document.getElementById("controleInternet").style.display = "none";
+        if (endpoint === "/logout") {
+          document.getElementById("painelSection").style.display = "none";
+          document.getElementById("loginSection").style.display = "block";
+          document.getElementById("mensagem").innerHTML = texto;
+        } else {
+          document.getElementById("respostaPainel").innerHTML = texto;
+        }
       }
     </script>
   </body>
