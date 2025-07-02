@@ -2,13 +2,88 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Controle</title>
-   <link rel="stylesheet" href="/Estilo.css">
+  <title>Painel de Controle  - Laboratórios</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 30px;
+      text-align: center;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-bottom: 40px;
+    }
+    .grupo {
+      margin: 20px auto;
+      padding: 20px;
+      width: 300px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .lab-nome {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+    .botao {
+      display: block;
+      width: 100%;
+      margin: 8px 0;
+      padding: 12px;
+      text-decoration: none;
+      color: white;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    .bloquear {
+      background-color: #e74c3c;
+    }
+    .bloquear:hover {
+      background-color: #c0392b;
+    }
+    .desbloquear {
+      background-color: #2ecc71;
+    }
+    .desbloquear:hover {
+      background-color: #27ae60;
+    }
+  </style>
 </head>
 <body>
-  <h2>Bem-vindo!</h2>
-  <a href="/bloquear">Bloquear Internet</a> |
-  <a href="/desbloquear">Desbloquear Internet</a> |
-  <a href="/logout">Sair</a>
+  <h1>🔒 Painel de Controle de Internet IFSULDEMINAS</h1>
+
+  <div class="grupo">
+    <div class="lab-nome">💻 Laboratório 01</div>
+    <a href="/bloquear?grupo=lab01" class="botao bloquear">Bloquear</a>
+    <a href="/desbloquear?grupo=lab01" class="botao desbloquear">Desbloquear</a>
+  </div>
+
+  <div class="grupo">
+    <div class="lab-nome">💻 Laboratório 02</div>
+    <a href="/bloquear?grupo=lab02" class="botao bloquear">Bloquear</a>
+    <a href="/desbloquear?grupo=lab02" class="botao desbloquear">Desbloquear</a>
+  </div>
+
+  <div class="grupo">
+    <div class="lab-nome">💻 Laboratório 03</div>
+    <a href="/bloquear?grupo=lab03" class="botao bloquear">Bloquear</a>
+    <a href="/desbloquear?grupo=lab03" class="botao desbloquear">Desbloquear</a>
+  </div>
+
+  <div class="grupo">
+    <div class="lab-nome">💻 Laboratório 04</div>
+    <a href="/bloquear?grupo=lab04" class="botao bloquear">Bloquear</a>
+    <a href="/desbloquear?grupo=lab04" class="botao desbloquear">Desbloquear</a>
+  </div>
+
+  <div class="grupo">
+    <div class="lab-nome">💻 Laboratório 05</div>
+    <a href="/bloquear?grupo=lab05" class="botao bloquear">Bloquear</a>
+    <a href="/desbloquear?grupo=lab05" class="botao desbloquear">Desbloquear</a>
+    <a href="/logout">Sair</a>
+  </div>
 </body>
 </html>

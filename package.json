@@ -1,0 +1,22 @@
+{
+  "name": "sistemablockatualizado-5",
+  "version": "1.0.0",
+  "main": "ServidorWeb.js",
+  "scripts": {
+    "start": "node ServidorWeb.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/otaviool/SistemaBlockAtualizado.git"
+  },
+  "bugs": {
+    "url": "https://github.com/otaviool/SistemaBlockAtualizado/issues"
+  },
+  "homepage": "https://github.com/otaviool/SistemaBlockAtualizado#readme",
+  "license": "ISC"
+}
