@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Redefinir Senha</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+  <h2>🔁 Redefinir Senha</h2>
+  <form action="/redefinirSenha" method="post">
+    <label>Usuário:</label><br>
+    <input type="text" name="usuario" required style="width: 300px; padding: 8px;"><br><br>
+
+    <label>E-mail institucional:</label><br>
+    <input type="email" name="email" required style="width: 300px; padding: 8px;"><br><br>
+
+    <button type="submit" style="padding: 10px 20px; background-color: #ff5722; color: white; border: none; border-radius: 6px;">
+      🔑 Redefinir
+    </button>
+  </form>
+  <br>
+  <a href="/" style="color: #007BFF;">🔙 Voltar para o Login</a>
+</body>
+</html>

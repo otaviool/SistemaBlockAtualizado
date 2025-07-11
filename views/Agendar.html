@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Agendar Bloqueio</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+  <h2>🕒 Agendar Bloqueio/Desbloqueio</h2>
+  <form action="/agendar" method="post">
+    <label>Grupo:</label><br>
+    <select name="grupo" required>
+      <option value="lab01">lab01</option>
+      <option value="lab02">lab02</option>
+      <option value="lab03">lab03</option>
+      <option value="lab04">lab04</option>
+      <option value="lab05">lab05</option>
+    </select><br><br>
+
+    <label>Ação:</label><br>
+    <select name="acao" required>
+      <option value="bloquear">Bloquear</option>
+      <option value="desbloquear">Desbloquear</option>
+    </select><br><br>
+
+    <label>Horário (HH:mm):</label><br>
+   <input type="text" name="horario" placeholder="Ex: 13:45" required pattern="^([01]\d|2[0-3]):[0-5]\d$" style="width: 150px; padding: 8px;">
+<small style="color: gray;">(Formato HH:mm — 24h)</small>
+
+    <button type="submit">✅ Agendar</button>
+  </form>
+  <br>
+  <a href="/" style="color: #007BFF;">🔙 Voltar para o Painel</a>
+</body>
+</html>

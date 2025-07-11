@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Bloquear Site</title>
+</head>
+<body style="font-family: sans-serif; text-align: center; margin-top: 50px;">
+  <h2>🌐 Bloquear/Desbloquear Site</h2>
+  <form action="/siteComando" method="get">
+    <label for="site">Nome ou IP do site:</label><br>
+    <input type="text" name="site" id="site" required style="width: 300px; padding: 8px;"><br><br>
+
+    <label for="grupo">Laboratório:</label><br>
+    <select name="grupo" id="grupo" required>
+      <option value="lab01">lab01</option>
+      <option value="lab02">lab02</option>
+      <option value="lab03">lab03</option>
+      <option value="lab04">lab04</option>
+      <option value="lab05">lab05</option>
+    </select><br><br>
+
+    <button type="submit" name="acao" value="bloquear" style="background-color: crimson; color: white; padding: 8px 16px;">🚫 Bloquear</button>
+    <button type="submit" name="acao" value="desbloquear" style="background-color: seagreen; color: white; padding: 8px 16px;">✅ Desbloquear</button>
+  </form>
+
+  <br>
+  <a href="/" style="color: #007BFF;">🔙 Voltar para o Painel</a>
+</body>
+</html>

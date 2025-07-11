@@ -2,18 +2,112 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="/estilo.css">
+  <title>Login - Instituto Federal</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #00923F, #00662D);
+      color: #f0f0f0;
+      padding: 30px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 2.2rem;
+      color: #ffffff;
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 2px solid #ffffff22;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 0 15px #00923F55;
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 90%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #00923F;
+      background: transparent;
+      color: #fff;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    input::placeholder {
+      color: #cccccc;
+    }
+
+    button {
+      padding: 12px 25px;
+      background-color: #00923F;
+      border: none;
+      border-radius: 8px;
+      color: #ffffff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #00662D;
+    }
+
+    .links {
+      margin-top: 20px;
+    }
+
+    .links a {
+      display: block;
+      margin: 8px 0;
+      color: #00ff99;
+      font-weight: bold;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .links a:hover {
+      color: #b8ffc8;
+      text-decoration: underline;
+    }
+
+  </style>
 </head>
 <body>
- <div class="container">
-  <h2>Login</h2>
-  <form method="post" action="/login">
-    <input type="text" name="usuario" placeholder="Usuário"><br>
-    <input type="password" name="senha" placeholder="Senha"><br>
-    <button type="submit">Entrar</button>
-  </form>
-  <a href="/cadastro" class="button-link">➕ Cadastrar</a>
-</div>
+  <h2></h2>
+
+  <form action="/login" method="post">
+  <h2 style="text-align: center; color: #ffffff;"> Login - Instituto Federal</h2>
+
+  <label style="font-weight: bold; display: block; text-align: center;"> Usuário:</label>
+  <input type="text" name="usuario" placeholder="Digite seu nome de usuário" required>
+
+  <label style="font-weight: bold; display: block; text-align: center;"> Senha:</label>
+  <input type="password" name="senha" placeholder="Digite sua senha" required>
+
+  <button type="submit">✅ Entrar</button>
+
+  <div class="links" style="text-align: center;">
+    <a href="/cadastro">📝 Criar nova conta</a>
+    <a href="/redefinir">🔁 Esqueci minha senha</a>
+  </div>
+</form>
 </body>
 </html>
